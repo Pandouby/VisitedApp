@@ -1,3 +1,12 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext"
+  },
+  "lib": ["es2017", "ES6"],
+  "jsx": "react-native",
+  "allowJs": true,
+  "noEmit": true,
+  "isolatedModules": true,
+  "moduleResolution": "node"
 }
