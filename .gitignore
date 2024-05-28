@@ -74,3 +74,6 @@ dist-ssr
 
 # Environment
 .env
+
+# Pods
+ios/Pods/
