@@ -4,7 +4,7 @@ import { GlobeComponent } from './components/Globe/Globe';
 
 export default function App() {
     return (
-        <View>
+        <View id='globe-view'>
             <Text>${Platform.OS}</Text>
 
             <GlobeComponent />

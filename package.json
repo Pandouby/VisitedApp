@@ -13,12 +13,16 @@
     "preview:web": "vite preview -c web/vite.config.ts"
   },
   "dependencies": {
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.16.6",
+    "@types/three": "^0.164.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-globe.gl": "^1.0.4",
     "react-native": "0.74.1",
     "react-native-dotenv": "^3.4.11",
     "react-native-web": "^0.19.12",
+    "sass": "^1.77.2",
     "three": "^0.164.1"
   },
   "devDependencies": {
