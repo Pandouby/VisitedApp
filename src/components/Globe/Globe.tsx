@@ -1,9 +1,8 @@
 import { Suspense, useEffect, useState } from 'react';
-import Globe from 'react-globe.gl';
 import React from 'react';
-import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { color, texture } from 'three/examples/jsm/nodes/Nodes.js';
+import { OrbitControls, Preload } from '@react-three/drei';
+import { Canvas, useLoader } from '@react-three/fiber';
+import * as THREE from 'three';
 
 export const GlobeComponent = () => {
     const [countries, setCountries] = useState({ features: [] });
@@ -16,30 +15,10 @@ export const GlobeComponent = () => {
             .then(setCountries);
     }, []);
 
-    /*
-    return (
-        <Globe
-            globeImageUrl="https://unpkg.com/three-globe/example/img/earth-night.jpg"
-            backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
-            lineHoverPrecision={0}
-            polygonsData={countries.features.filter(
-                d => d.properties.ISO_A2 !== 'AQ',
-            )}
-            polygonAltitude={d => (d === hoverD ? 0.12 : 0.06)}
-            polygonCapColor={'blue'}
-            polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
-            polygonStrokeColor={() => '#111'}
-            polygonLabel={({ properties: d }) => `
-        <b>${d.ADMIN} (${d.ISO_A2}):</b> <br />
-        GDP: <i>${d.GDP_MD_EST}</i> M$<br/>
-        Population: <i>${d.POP_EST}</i>
-      `}
-            onPolygonHover={setHoverD}
-            onPolygonClick
-            polygonsTransitionDuration={300}
-        />
+    const earthTexture = useLoader(
+        THREE.TextureLoader,
+        'resources/earth_map_10k.jpg',
     );
-    */
 
     return (
         <Canvas
@@ -55,7 +34,7 @@ export const GlobeComponent = () => {
                 position: [-4, 1, 1],
             }}>
             <mesh>
-                <hemisphereLight intensity={0.3} groundColor="black" />
+                <hemisphereLight intensity={50} groundColor="black" />
                 <spotLight
                     position={[-20, 50, 10]}
                     angle={0.12}
@@ -66,7 +45,7 @@ export const GlobeComponent = () => {
                 />
                 <pointLight intensity={1} />
             </mesh>
-            <Suspense>
+            <Suspense fallback={null}>
                 <OrbitControls
                     autoRotate
                     enableZoom={true}
@@ -76,9 +55,9 @@ export const GlobeComponent = () => {
                     visible
                     userData={{ hello: 'world' }}
                     position={[0, 0, 0]}
-                    rotation={[Math.PI / 2, 0, 0]}>
+                    rotation={[0, 0, 0]}>
                     <sphereGeometry args={[4, 32, 32]} />
-                    <meshStandardMaterial color="hotpink" transparent />
+                    <meshStandardMaterial map={earthTexture} transparent />
                 </mesh>
                 <Preload all />
             </Suspense>
