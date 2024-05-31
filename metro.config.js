@@ -10,12 +10,6 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const config = {
     transformer: {
         babelTransformerPath: require.resolve('react-native-sass-transformer'),
-        getTransformOptions: async () => ({
-            transform: {
-              experimentalImportSupport: false,
-              inlineRequires: false,
-            },
-          }),
     },
     resolver: {
         sourceExts: ['scss', 'sass', 'jsx', 'js', 'ts', 'tsx', 'json'],
