@@ -1,5 +1,5 @@
 import { Line, OrbitControls, Preload } from '@react-three/drei';
-import { Canvas, useLoader } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber/native';
 import React, { Suspense } from 'react';
 import * as THREE from 'three';
 import countriesJson from '../../data/custom.geo.json';
